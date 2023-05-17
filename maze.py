@@ -1,4 +1,4 @@
-def flood_fill(image, location, new_color):
+def maze_solver(image, location, new_color):
     """
     Given an image, replace the same-colored region around a given location
     with a given color.  Returns None but mutates the original image to
@@ -88,7 +88,7 @@ def set_pixel(image, row, col, color):
 
 
 ##### USER INTERFACE CODE
-##### DISPLAY AN IMAGE AND CALL flood_fill WHEN THE IMAGE IS CLICKED
+##### DISPLAY AN IMAGE AND CALL maze_solver WHEN THE IMAGE IS CLICKED
 
 import os
 import sys
@@ -152,7 +152,7 @@ while True:
                 pygame.quit()
                 sys.exit(0)
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            # flood_fill(image, (event.pos[1] // SCALE, event.pos[0] // SCALE), cur_color)
+            maze_solver(image, (event.pos[1] // SCALE, event.pos[0] // SCALE), cur_color)
             find_path(image, (event.pos[1] // SCALE, event.pos[0] // SCALE), cur_color)
             screen.blit(image, (0, 0))
             pygame.display.flip()
