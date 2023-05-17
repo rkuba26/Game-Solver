@@ -1,10 +1,3 @@
-"""
-6.1010 Spring '23 Lab 4: Snekoban Game
-"""
-
-# import json
-# import typing
-# NO ADDITIONAL IMPORTS!
 direction_vector = {
     "up": (-1, 0),
     "down": (+1, 0),
@@ -204,47 +197,6 @@ def solve_puzzle(game):
                 new_path = look_at + (neighbor,)
                 queue.append(new_path)
     return None
-
-if __name__ == "__main__":
-    puzzle = [
-  [[], [], ["wall"], ["wall"], ["wall"], ["wall"], [], [], []],
-  [
-    ["wall"],
-    ["wall"],
-    ["wall"],
-    [],
-    [],
-    ["wall"],
-    ["wall"],
-    ["wall"],
-    ["wall"]
-  ],
-  [["wall"], [], [], [], [], [], ["computer"], [], ["wall"]],
-  [["wall"], [], ["wall"], [], [], ["wall"], ["computer"], [], ["wall"]],
-  [
-    ["wall"],
-    [],
-    ["target"],
-    [],
-    ["target"],
-    ["wall"],
-    ["player"],
-    [],
-    ["wall"]
-  ],
-  [
-    ["wall"],
-    ["wall"],
-    ["wall"],
-    ["wall"],
-    ["wall"],
-    ["wall"],
-    ["wall"],
-    ["wall"],
-    ["wall"]
-  ]
-    ]
-    print(solve_puzzle(new_game(puzzle)))
 
 
 
