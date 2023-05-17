@@ -1,16 +1,8 @@
-"""
-6.1010 Spring '23 Lab 8: SAT Solver
-"""
-
-#!/usr/bin/env python3
 
 import sys
 import time
-# import typing
-# import doctest
 
 sys.setrecursionlimit(10_000)
-# NO ADDITIONAL IMPORTS
 
 
 bool_list = [True,False]
@@ -158,8 +150,6 @@ def solver(sudoku_board):
     return sudoku_board   
 
 if __name__ == '__main__':
-    # _doctest_flags = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
-    # doctest.testmod(optionflags=_doctest_flags)
     board = [
         [0,8,0,0,0,6,2,0,0],
         [5,0,0,8,7,0,3,0,0],
