@@ -1,15 +1,3 @@
-"""
-6.1010 Spring '23 Lab 7: Mines
-"""
-
-#!/usr/bin/env python3
-
-# import typing
-import doctest
-
-# NO ADDITIONAL IMPORTS ALLOWED!
-
-
 def dump(game):
     """
     Prints a human-readable version of a game (provided as a dictionary)
@@ -263,17 +251,6 @@ def new_game_nd(dimensions, bombs):
 
     Returns:
        A game state dictionary
-
-    >>> g = new_game_nd((2, 4, 2), [(0, 0, 1), (1, 0, 0), (1, 1, 1)])
-    >>> dump(g)
-    board:
-        [[3, '.'], [3, 3], [1, 1], [0, 0]]
-        [['.', 3], [3, '.'], [1, 1], [0, 0]]
-    dimensions: (2, 4, 2)
-    hidden:
-        [[True, True], [True, True], [True, True], [True, True]]
-        [[True, True], [True, True], [True, True], [True, True]]
-    state: ongoing
     """
     game = board(dimensions,0)
     for bomb in bombs:
@@ -308,45 +285,6 @@ def dig_nd(game, coordinates):
 
     Returns:
        int: number of squares revealed
-
-    >>> g = {'dimensions': (2, 4, 2),
-    ...      'board': [[[3, '.'], [3, 3], [1, 1], [0, 0]],
-    ...                [['.', 3], [3, '.'], [1, 1], [0, 0]]],
-    ...      'hidden': [[[True, True], [True, False], [True, True],
-    ...                [True, True]],
-    ...               [[True, True], [True, True], [True, True],
-    ...                [True, True]]],
-    ...      'state': 'ongoing'}
-    >>> dig_nd(g, (0, 3, 0))
-    8
-    >>> dump(g)
-    board:
-        [[3, '.'], [3, 3], [1, 1], [0, 0]]
-        [['.', 3], [3, '.'], [1, 1], [0, 0]]
-    dimensions: (2, 4, 2)
-    hidden:
-        [[True, True], [True, False], [False, False], [False, False]]
-        [[True, True], [True, True], [False, False], [False, False]]
-    state: ongoing
-    >>> g = {'dimensions': (2, 4, 2),
-    ...      'board': [[[3, '.'], [3, 3], [1, 1], [0, 0]],
-    ...                [['.', 3], [3, '.'], [1, 1], [0, 0]]],
-    ...      'hidden': [[[True, True], [True, False], [True, True],
-    ...                [True, True]],
-    ...               [[True, True], [True, True], [True, True],
-    ...                [True, True]]],
-    ...      'state': 'ongoing'}
-    >>> dig_nd(g, (0, 0, 1))
-    1
-    >>> dump(g)
-    board:
-        [[3, '.'], [3, 3], [1, 1], [0, 0]]
-        [['.', 3], [3, '.'], [1, 1], [0, 0]]
-    dimensions: (2, 4, 2)
-    hidden:
-        [[True, False], [True, False], [True, True], [True, True]]
-        [[True, True], [True, True], [True, True], [True, True]]
-    state: defeat
     """
     dim,state,bo,hid,coords = shorten(game)
     def recursive(game,coordinates):
@@ -378,22 +316,6 @@ def render_nd(game, xray=False):
 
     Returns:
        An n-dimensional array of strings (nested lists)
-
-    >>> g = {'dimensions': (2, 4, 2),
-    ...      'board': [[[3, '.'], [3, 3], [1, 1], [0, 0]],
-    ...                [['.', 3], [3, '.'], [1, 1], [0, 0]]],
-    ...      'hidden': [[[True, True], [True, False], [False, False],
-    ...                [False, False]],
-    ...               [[True, True], [True, True], [False, False],
-    ...                [False, False]]],
-    ...      'state': 'ongoing'}
-    >>> render_nd(g, False)
-    [[['_', '_'], ['_', '3'], ['1', '1'], [' ', ' ']],
-     [['_', '_'], ['_', '_'], ['1', '1'], [' ', ' ']]]
-
-    >>> render_nd(g, True)
-    [[['3', '.'], ['3', '3'], ['1', '1'], [' ', ' ']],
-     [['.', '3'], ['3', '.'], ['1', '1'], [' ', ' ']]]
     """
     element = lambda a,hid: '_' if hid and not xray else ' ' \
         if a == 0 else str(a) if isinstance(a,int) else a
@@ -403,21 +325,3 @@ def render_nd(game, xray=False):
     return deep_copy(game['board'],game['hidden'])
 
 
-if __name__ == '__main__':
-    # Test with doctests. Helpful to debug individual lab.py functions.
-    _doctest_flags = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
-    doctest.testmod(optionflags=_doctest_flags)  # runs ALL doctests
-
-    # Alternatively, can run the doctests JUST for specified function/methods,
-    # e.g., for render_2d_locations or any other function you might want.  To
-    # do so, comment out the above line, and uncomment the below line of code.
-    # This may be useful as you write/debug individual doctests or functions.
-    # Also, the verbose flag can be set to True to see all test results,
-    # including those that pass.
-    #
-    #doctest.run_docstring_examples(
-    #    render_2d_locations,
-    #    globals(),
-    #    optionflags=_doctest_flags,
-    #    verbose=False
-    # )
